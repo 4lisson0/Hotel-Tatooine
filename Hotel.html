@@ -1,0 +1,135 @@
+<html>
+
+<head>
+
+	<script>
+
+		var lista_hospedes = [];
+		var lista_hospedes_idade = [];
+
+		function inicio() {
+
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
+
+			if (escolha === 1) {
+				reserva_quartos();
+			} else if (escolha === 2) {
+				cadastro_hospedes();
+			} else if (escolha === 3) {
+				abastecer_carros();
+			} else if (escolha === 4) {
+				sair();
+			} else {
+				erro();
+			}
+		}
+
+		function reserva_quartos() {
+			alert('HOTEL {NOME DO HOTEL} - RESERVA DE QUARTOS');
+			inicio();
+		}
+
+		function cadastro_hospedes() {
+			alert('HOTEL {NOME DO HOTEL} - CADASTRO DE HÓSPEDES');
+
+			function sistema_cadastrar_hospedes() {
+
+				var escolha_hospedes = parseInt(prompt('Cadastro de Hóspedes\n\n Selecione uma opção: \n1. Cadastrar \n2. Pesquisar \n3. Sair'));
+
+				if (escolha_hospedes === 1) {
+					cadastrar_hospedes();
+				} else if (escolha_hospedes === 2) {
+					pesquisar_hospedes();
+				} else if (escolha_hospedes === 3) {
+					//inicio();
+				} else {
+					erro_pesquisar_hospedes();
+				}
+			}
+
+			function cadastrar_hospedes() {
+				while (true) {
+					var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede (ou digite "sair" para encerrar):');
+					if (nome_hospede.toLowerCase() === "sair") {
+						break; // Sai do loop se o usuário digitar "sair"
+					}
+
+					var idade_hospede = prompt(`Por favor, informe a idade de ${nome_hospede}:`);
+					if (lista_hospedes.length >= 15) {
+						alert("Número máximo de hóspedes cadastrados.");
+						break; // Sai do loop se o limite for atingido
+					} else if (idade_hospede < 6) {
+						lista_hospedes.push(nome_hospede);
+						lista_hospedes_idade.push(idade_hospede);
+						console.log(lista_hospedes);
+						alert(`Idade de ${nome_hospede} é ${idade_hospede}, logo sua entrada é gratuita`);
+						alert("Sucesso! Hóspede " + nome_hospede + " foi cadastrada(o) com sucesso!\n");
+					} else if (idade_hospede > 60) {
+						lista_hospedes.push(nome_hospede);
+						lista_hospedes_idade.push(idade_hospede);
+						console.log(lista_hospedes);
+						alert(`Idade de ${nome_hospede} é ${idade_hospede}, logo valor da entrada é meia`);
+						alert("Sucesso! Hóspede " + nome_hospede + " foi cadastrada(o) com sucesso!\n");
+					} else {
+						lista_hospedes.push(nome_hospede);
+						lista_hospedes_idade.push(idade_hospede);
+						console.log(lista_hospedes);
+						alert(`Idade de ${nome_hospede} é ${idade_hospede}, valor da entrada é inteira`);
+						alert("Sucesso! Hóspede " + nome_hospede + " foi cadastrada(o) com sucesso!\n");
+					}
+				}
+				sistema_cadastrar_hospedes();
+			}
+
+			function pesquisar_hospedes() {
+				var nome_hospede = prompt('Por favor, informe o nome da(o) hóspede para pesquisa:');
+				// O método includes() procura por um elemento dentro do Array e retorna verdadeiro ou falso. Caso queira comparar números, o mais indicado é o método find();
+				if (lista_hospedes.includes(nome_hospede)) {
+					alert(`Hospede ${nome_hospede} encontrada(o)`)
+				} else {
+					alert(`Hospede ${nome_hospede} não encontrada(o)`)
+				}
+
+				sistema_cadastrar_hospedes()
+			}
+
+			function erro_pesquisar_hospedes() {
+				alert('Por favor, informe um número entre 1 e 3');
+				sistema_cadastrar_hospedes();
+			}
+
+			sistema_cadastrar_hospedes();
+
+			inicio();
+		}
+
+		function abastecer_carros() {
+			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
+			inicio();
+		}
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 e 4');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+
+
+
+		inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
